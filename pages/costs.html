@@ -10,64 +10,162 @@
 
 <div class="page-header">
   <h1>Costs & Billing</h1>
-  <p class="page-desc">What Claude Code costs and how billing works across the team.</p>
+  <p class="page-desc">Exactly what costs money, what doesn't, and what's optional. No surprises.</p>
 </div>
 
+<div class="note warn"><strong>The golden rule:</strong> Your keys = your cost. Nothing in this toolkit charges anyone else's account. You control what you pay for by choosing which services to activate. You can use Claude Code with zero optional add-ons and still be highly effective.</div>
+
+<!-- ============================================ -->
 <div class="section">
-  <h2>Individual Costs</h2>
-  <p class="section-desc">Each team member needs their own Claude subscription:</p>
+  <h2>The Only Required Cost</h2>
+  <p class="section-desc">To use Claude Code, you need exactly one thing: a Claude subscription. That's it. Everything else on this page is optional.</p>
 
   <div class="logic-box">
     <table>
-      <tr><th>Plan</th><th>Monthly Cost</th><th>Usage Level</th><th>Best For</th></tr>
-      <tr><td class="bold">Claude Max</td><td>$100/mo</td><td>Moderate</td><td>Daily use &mdash; research, content, client work</td></tr>
-      <tr><td class="bold">Claude Max</td><td>$200/mo</td><td>Heavy</td><td>Power users &mdash; heavy coding, multi-agent workflows</td></tr>
-      <tr><td class="bold">API Key</td><td>~$50&ndash;200/mo</td><td>Variable</td><td>Pay-per-use &mdash; good for lighter or bursty workloads</td></tr>
+      <tr><th>Plan</th><th>Monthly Cost</th><th>What You Get</th></tr>
+      <tr>
+        <td class="bold">Claude Max</td>
+        <td style="font-family: 'JetBrains Mono', monospace; font-size: 14px;">$100/mo</td>
+        <td>Daily use &mdash; research, content writing, client work, light coding. Enough for most team members.</td>
+      </tr>
+      <tr>
+        <td class="bold">Claude Max (Heavy)</td>
+        <td style="font-family: 'JetBrains Mono', monospace; font-size: 14px;">$200/mo</td>
+        <td>Unlimited-feel usage &mdash; heavy coding, running multiple agents, complex multi-step tasks. You'll know if you need this because you'll hit rate limits on the $100 plan.</td>
+      </tr>
     </table>
   </div>
 
-  <div class="note">Start with the $100/mo plan. You can upgrade if you hit rate limits regularly.</div>
+  <div class="note green"><strong>Start with $100/mo.</strong> That covers a full workday of active Claude usage. Upgrade to $200 only if you're consistently hitting rate limits. You can change plans anytime.</div>
 </div>
 
+<!-- ============================================ -->
 <div class="section">
-  <h2>Shared Infrastructure</h2>
-  <p class="section-desc">These services run centrally on CDE's API key. No extra cost for team members:</p>
+  <h2>What's Completely Free</h2>
+  <p class="section-desc">These cost nothing beyond your Claude subscription. They're included in the toolkit and work out of the box.</p>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>What</th><th>Cost</th><th>Why It's Free</th></tr>
+      <tr><td class="bold">This docs site</td><td style="color: var(--green);">$0</td><td>Hosted on GitHub Pages (free)</td></tr>
+      <tr><td class="bold">The starter CLAUDE.md</td><td style="color: var(--green);">$0</td><td>It's a text file &mdash; just instructions for Claude</td></tr>
+      <tr><td class="bold">Security hooks</td><td style="color: var(--green);">$0</td><td>Local JavaScript files that protect your machine</td></tr>
+      <tr><td class="bold">Playwright (browser automation)</td><td style="color: var(--green);">$0</td><td>Runs locally on your machine, zero config</td></tr>
+      <tr><td class="bold">Supadata (YouTube transcripts)</td><td style="color: var(--green);">$0</td><td>Free tier covers normal usage</td></tr>
+      <tr><td class="bold">Stitch (UI design)</td><td style="color: var(--green);">$0</td><td>Runs locally</td></tr>
+      <tr><td class="bold">Google Drive access</td><td style="color: var(--green);">$0</td><td>Uses Google's free APIs with your own Google account</td></tr>
+      <tr><td class="bold">Google Ads data</td><td style="color: var(--green);">$0</td><td>Google Ads API is free for read access</td></tr>
+      <tr><td class="bold">Shared webhook agents</td><td style="color: var(--green);">$0 to you</td><td>Blog pipeline, transcript PM, Bhavani &mdash; these run on CDE's central infrastructure. You benefit from them but don't pay for them.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<div class="section">
+  <h2>Optional Upgrades (The Super Max Deluxe Abilities)</h2>
+  <p class="section-desc">These are power-user tools that unlock extra capabilities. Each one requires its own API key &mdash; <strong>your key, on your account, billed to you</strong>. None of these are required. Think of them as unlockable abilities you can opt into when you need them.</p>
+
+  <div class="note">None of these charge CDE or anyone else. When you create an API key, it's tied to YOUR account. You set your own spending limits. You can revoke it anytime.</div>
+
+  <h3>AI Image Generation</h3>
+  <div class="logic-box">
+    <span class="label">Nano Banana + CDE Imagen</span>
+    <table>
+      <tr><td class="bold" style="width: 140px;">What it does</td><td>Generate and edit images using AI (powered by Google's Gemini). Create ad creatives, social media graphics, brand assets, mockups.</td></tr>
+      <tr><td class="bold">What it costs</td><td>Requires a <strong>Gemini API key</strong> from Google AI Studio. Free tier gives you ~50 images/day. Paid tier is ~$0.01&ndash;0.05 per image.</td></tr>
+      <tr><td class="bold">How to get it</td><td>Go to <code>aistudio.google.com/apikey</code>, create a key, follow the <a href="authentication.html" style="color: var(--cyan);">Authentication guide</a>.</td></tr>
+      <tr><td class="bold">Monthly estimate</td><td style="color: var(--green);">$0&ndash;5/mo for most people. Heavy creative work might hit $10&ndash;20/mo.</td></tr>
+      <tr><td class="bold">Can you skip it?</td><td>Yes. You can still do all text-based work without image gen.</td></tr>
+    </table>
+  </div>
+
+  <h3>API-Powered Claude (Pay-Per-Use)</h3>
+  <div class="logic-box">
+    <span class="label">Alternative to Claude Max subscription</span>
+    <table>
+      <tr><td class="bold" style="width: 140px;">What it does</td><td>Instead of a flat monthly subscription, you pay per conversation. Some people prefer this for lighter or unpredictable usage.</td></tr>
+      <tr><td class="bold">What it costs</td><td>Requires an <strong>Anthropic API key</strong>. Pricing varies by model &mdash; roughly $3&ndash;15 per million tokens depending on model.</td></tr>
+      <tr><td class="bold">Monthly estimate</td><td style="color: var(--amber);">$50&ndash;200/mo depending on usage. Can spike if you're not careful.</td></tr>
+      <tr><td class="bold">Should you use it?</td><td>Probably not. The $100/mo Max plan is simpler and more predictable. API keys are mainly for automated agents and custom integrations.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<div class="section">
+  <h2>Cost Cheat Sheet</h2>
+  <p class="section-desc">The complete picture in one table.</p>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Thing</th><th>Cost</th><th>Who Pays</th><th>Required?</th></tr>
+      <tr>
+        <td class="bold">Claude Max subscription</td>
+        <td>$100 or $200/mo</td>
+        <td>You</td>
+        <td style="color: var(--red);">Yes</td>
+      </tr>
+      <tr>
+        <td class="bold">Toolkit repo + docs</td>
+        <td style="color: var(--green);">Free</td>
+        <td>&mdash;</td>
+        <td>&mdash;</td>
+      </tr>
+      <tr>
+        <td class="bold">Playwright, Supadata, Stitch</td>
+        <td style="color: var(--green);">Free</td>
+        <td>&mdash;</td>
+        <td>No (but recommended)</td>
+      </tr>
+      <tr>
+        <td class="bold">Google Drive MCP</td>
+        <td style="color: var(--green);">Free</td>
+        <td>Your Google account</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td class="bold">Image generation (Gemini)</td>
+        <td>$0&ndash;20/mo</td>
+        <td>You (your Gemini key)</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td class="bold">Shared agents (blog, transcripts)</td>
+        <td style="color: var(--green);">Free to you</td>
+        <td>CDE central</td>
+        <td>&mdash;</td>
+      </tr>
+      <tr>
+        <td class="bold">Anthropic API key</td>
+        <td>$50&ndash;200/mo</td>
+        <td>You (if you choose this)</td>
+        <td>No &mdash; alternative to Max sub</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<div class="section">
+  <h2>Spending Controls</h2>
+  <p class="section-desc">If you activate any paid API keys, here's how to stay in control:</p>
 
   <div class="kpi-grid">
     <div class="kpi-card">
-      <div class="kpi-label">Blog Pipeline</div>
-      <div class="kpi-value" style="font-size:14px; font-family: Inter, sans-serif;">Briefing, refining, writing agents on Vercel</div>
+      <div class="kpi-label">Gemini API</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">Google AI Studio lets you set daily quotas and spending caps. The free tier has built-in rate limits that prevent accidental overuse.</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-label">Transcript PM</div>
-      <div class="kpi-value" style="font-size:14px; font-family: Inter, sans-serif;">Meeting recording processing via Zapier webhook</div>
+      <div class="kpi-label">Anthropic API</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">Anthropic's console lets you set monthly spending limits. Set a hard cap before you start using it. It will stop when you hit it.</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-label">Bhavani</div>
-      <div class="kpi-value" style="font-size:14px; font-family: Inter, sans-serif;">WhatsApp bot on Meta Cloud API</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">General Assistant</div>
-      <div class="kpi-value" style="font-size:14px; font-family: Inter, sans-serif;">API-accessible Claude for ad hoc tasks</div>
+      <div class="kpi-label">Claude Max</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">Flat rate. No usage surprises. If you hit the rate limit, Claude just slows down &mdash; it doesn't charge you more.</div>
     </div>
   </div>
-</div>
 
-<div class="section">
-  <h2>MCP Server Costs</h2>
-
-  <div class="logic-box">
-    <table>
-      <tr><th>Server</th><th>Cost</th><th>Notes</th></tr>
-      <tr><td class="bold">Playwright</td><td style="color: var(--green);">Free</td><td>Runs locally</td></tr>
-      <tr><td class="bold">Supadata</td><td style="color: var(--green);">Free</td><td>Free tier covers normal use</td></tr>
-      <tr><td class="bold">Stitch</td><td style="color: var(--green);">Free</td><td>Runs locally</td></tr>
-      <tr><td class="bold">Nano Banana</td><td style="color: var(--amber);">Gemini API</td><td>Free tier available; paid tier ~$0.01-0.05 per image</td></tr>
-      <tr><td class="bold">Google Drive</td><td style="color: var(--green);">Free</td><td>Uses Google's free APIs</td></tr>
-      <tr><td class="bold">CDE Imagen</td><td style="color: var(--amber);">Gemini API</td><td>Same as Nano Banana</td></tr>
-      <tr><td class="bold">Google Ads</td><td style="color: var(--green);">Free</td><td>Uses Google Ads API (free for read access)</td></tr>
-    </table>
-  </div>
+  <div class="note green"><strong>Bottom line:</strong> If you just get a $100/mo Claude Max subscription and use the free MCP servers (Playwright, Supadata, Google Drive), your total cost is $100/mo. Everything else is opt-in.</div>
 </div>
 
 <div class="footer">
