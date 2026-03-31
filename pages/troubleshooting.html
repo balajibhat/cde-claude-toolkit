@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Troubleshooting | CDE Toolkit</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Troubleshooting</h1>
+  <p class="page-desc">Common issues and how to fix them.</p>
+</div>
+
+<div class="section">
+  <h2>Claude Code Won't Start</h2>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Symptom</th><th>Likely Cause</th><th>Fix</th></tr>
+      <tr><td><code>claude: command not found</code></td><td>Not installed or not in PATH</td><td>Run <code>npm install -g @anthropic-ai/claude-code</code></td></tr>
+      <tr><td>Authentication error</td><td>Not logged in or subscription expired</td><td>Run <code>claude login</code> or check your subscription at claude.ai</td></tr>
+      <tr><td>VS Code extension not showing</td><td>Extension not installed or disabled</td><td>Check Extensions panel, search "Claude Code"</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>MCP Server Issues</h2>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Symptom</th><th>Likely Cause</th><th>Fix</th></tr>
+      <tr><td>"Server not connected"</td><td>Server crashed or wasn't started</td><td>Restart Claude Code. Check <code>claude mcp list</code></td></tr>
+      <tr><td>Google Drive auth expired</td><td>OAuth tokens expired</td><td>Delete <code>~/.claude/.gdrive-server-credentials.json</code> and re-auth</td></tr>
+      <tr><td>Playwright can't open browser</td><td>No browser installed or permissions issue</td><td>Run <code>npx playwright install chromium</code></td></tr>
+      <tr><td>Image gen fails</td><td>Missing or invalid Gemini API key</td><td>Check <code>GEMINI_API_KEY</code> env var or reconfigure</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Hook False Positives</h2>
+  <p class="section-desc">Sometimes hooks block safe operations because they match a dangerous pattern.</p>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Symptom</th><th>Likely Cause</th><th>Fix</th></tr>
+      <tr><td>Blocked on word "format" in Python code</td><td>Hook matches system command keywords in inline code</td><td>Write the script to a file first, then run the file</td></tr>
+      <tr><td>Blocked on a safe git command</td><td>Command matches destructive git pattern</td><td>Run the command manually in your terminal</td></tr>
+    </table>
+  </div>
+
+  <div class="note warn">If you keep hitting false positives on a specific pattern, tell Balaji so the hook can be tuned. Don't try to modify hooks yourself.</div>
+</div>
+
+<div class="section">
+  <h2>General Tips</h2>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Restart fixes most things</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">Close and reopen Claude Code. MCP servers reconnect on startup.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Check your Node version</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">Claude Code needs Node.js 18+. Run <code>node --version</code> to check.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Clear npm cache</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">If MCP servers fail to start: <code>npm cache clean --force</code></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Ask Claude</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">Seriously &mdash; describe your problem to Claude. It's good at debugging itself.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Core Digital Expansion &mdash; Team Toolkit</p>
+</div>
+
+<script src="../layout.js"></script>
+<script>initLayout('troubleshooting');</script>
+</body>
+</html>

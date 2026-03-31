@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick Start | CDE Toolkit</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Quick Start</h1>
+  <p class="page-desc">Zero to operational in under 30 minutes. Follow these steps in order.</p>
+</div>
+
+<div class="note green"><strong>Prerequisites:</strong> You need Claude Code installed (see <a href="installing.html" style="color: var(--cyan);">Installing Claude Code</a>) and a Claude account with an active subscription.</div>
+
+<div class="section">
+  <h2>The Steps</h2>
+
+  <ol class="step-list">
+    <li>
+      <strong>Install Claude Code</strong><br>
+      Follow the <a href="installing.html" style="color: var(--cyan);">installation guide</a>. Make sure both the CLI and VS Code extension are working. Verify by running <code>claude --version</code> in your terminal.
+    </li>
+    <li>
+      <strong>Clone this repo</strong><br>
+      <div class="code-block">git clone https://github.com/balajibhat/cde-claude-toolkit.git</div>
+    </li>
+    <li>
+      <strong>Copy the starter CLAUDE.md</strong><br>
+      Copy <code>starter/CLAUDE.md</code> from this repo to your home directory's <code>.claude/CLAUDE.md</code>:<br>
+      <div class="code-block"><span class="comment"># Windows</span>
+copy cde-claude-toolkit\starter\CLAUDE.md %USERPROFILE%\.claude\CLAUDE.md
+
+<span class="comment"># Mac</span>
+cp cde-claude-toolkit/starter/CLAUDE.md ~/.claude/CLAUDE.md</div>
+    </li>
+    <li>
+      <strong>Set up MCP servers</strong><br>
+      Follow the <a href="mcp-servers.html" style="color: var(--cyan);">MCP Servers guide</a> to connect the tools you need. Start with <strong>Playwright</strong> (browser automation) &mdash; it requires zero configuration.
+    </li>
+    <li>
+      <strong>Set up authentication</strong><br>
+      Follow the <a href="authentication.html" style="color: var(--cyan);">Authentication guide</a> for any MCP servers that need API keys or OAuth tokens.
+    </li>
+    <li>
+      <strong>Test it</strong><br>
+      Open VS Code, press <code>Ctrl+L</code> (or <code>Cmd+L</code> on Mac) to open Claude Code, and try:<br>
+      <div class="code-block">What MCP servers do I have connected?</div>
+      Claude should list your active servers. If it does &mdash; you're in.
+    </li>
+  </ol>
+</div>
+
+<div class="section">
+  <h2>What's Next</h2>
+  <p class="section-desc">Once you're set up:</p>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Read</div>
+      <div class="kpi-value" style="font-size:14px; font-family: Inter, sans-serif;"><a href="architecture.html" style="color: var(--cyan);">Architecture</a> &mdash; understand the system</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Read</div>
+      <div class="kpi-value" style="font-size:14px; font-family: Inter, sans-serif;"><a href="agents.html" style="color: var(--cyan);">Agents</a> &mdash; see what's automated</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Read</div>
+      <div class="kpi-value" style="font-size:14px; font-family: Inter, sans-serif;"><a href="hooks-safety.html" style="color: var(--cyan);">Hooks & Safety</a> &mdash; know the guardrails</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Read</div>
+      <div class="kpi-value" style="font-size:14px; font-family: Inter, sans-serif;"><a href="security.html" style="color: var(--cyan);">Security Policy</a> &mdash; the do's and don'ts</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Core Digital Expansion &mdash; Team Toolkit</p>
+</div>
+
+<script src="../layout.js"></script>
+<script>initLayout('quick-start');</script>
+</body>
+</html>

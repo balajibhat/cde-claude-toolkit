@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architecture | CDE Toolkit</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Architecture</h1>
+  <p class="page-desc">How CDE's AI infrastructure fits together. The big picture.</p>
+</div>
+
+<div class="section">
+  <h2>System Diagram</h2>
+
+  <div class="logic-box">
+    <span class="label">How It All Connects</span>
+    <div class="code-block" style="background: transparent; border: none; padding: 0; margin: 0;">
+You (Claude Code) ──── MCP Servers ──── External Services
+       │                    │               (Google Drive,
+       │                    │                Gemini, YouTube,
+       │                    │                Browser, etc.)
+       │                    │
+   CLAUDE.md            Hooks
+   (behavior)        (security)
+       │                    │
+       │                    │
+   Memory              Settings
+   (context)          (permissions)
+       │
+       │
+  Webhook Server (Vercel) ──── Zapier, WhatsApp, Circleback
+       │
+   Deployed Agents
+   (Blog Pipeline, Transcript PM, Bhavani)</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Local Directory Structure</h2>
+  <p class="section-desc">This is the standard CDE workspace layout. Not all directories are needed for every team member.</p>
+
+  <div class="code-block">Claude Code/
+├── agents/          <span class="comment"># Agent definitions (CLAUDE.md + prompts)</span>
+├── mcp-servers/     <span class="comment"># Custom MCP server code (gdrive, imagen)</span>
+├── launchers/       <span class="comment"># Batch files for starting agents</span>
+├── reference/       <span class="comment"># Protocols, brand assets, templates</span>
+├── outputs/         <span class="comment"># Generated deliverables (proposals, images)</span>
+├── credentials/     <span class="comment"># API keys, OAuth tokens (NEVER commit)</span>
+├── scratchpad/      <span class="comment"># Temp working files</span>
+└── archives/        <span class="comment"># Completed/retired work</span></div>
+</div>
+
+<div class="section">
+  <h2>Key Config Files</h2>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>File</th><th>Location</th><th>Purpose</th></tr>
+      <tr><td><code>CLAUDE.md</code></td><td><code>~/.claude/CLAUDE.md</code></td><td>Global instructions for Claude &mdash; loaded every session</td></tr>
+      <tr><td><code>settings.json</code></td><td><code>~/.claude/settings.json</code></td><td>MCP servers, permissions, deny rules</td></tr>
+      <tr><td><code>hooks/</code></td><td><code>~/.claude/hooks/</code></td><td>Security hook scripts (bash guard, file edit guard)</td></tr>
+      <tr><td><code>commands/</code></td><td><code>~/.claude/commands/</code></td><td>Custom slash commands (skills)</td></tr>
+      <tr><td><code>memory/</code></td><td><code>~/.claude/projects/*/memory/</code></td><td>Auto-memory &mdash; context that persists across sessions</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>The Three Layers</h2>
+
+  <div class="kpi-grid">
+    <div class="kpi-card" style="border-color: var(--green);">
+      <div class="kpi-label" style="color: var(--green);">Infrastructure (Shared)</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">Agent definitions, MCP server code, hooks, CLAUDE.md templates, webhook server. Shared via this repo.</div>
+    </div>
+    <div class="kpi-card" style="border-color: var(--amber);">
+      <div class="kpi-label" style="color: var(--amber);">Configuration (Per Person)</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">API keys, OAuth tokens, environment variables, personal settings. Set up during onboarding.</div>
+    </div>
+    <div class="kpi-card" style="border-color: var(--red);">
+      <div class="kpi-label" style="color: var(--red);">State (Local/Ephemeral)</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">Conversation history, auto-memory, scratchpad files. Generated as you work. Not shared.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Deployed Services</h2>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Service</th><th>Platform</th><th>What It Does</th></tr>
+      <tr><td class="bold">cde-agent-webhooks</td><td>Vercel</td><td>Receives triggers from Zapier, WhatsApp, Circleback. Runs agents server-side.</td></tr>
+    </table>
+    <br>
+    <span class="label">Endpoints</span>
+    <table>
+      <tr><td><code>/api/trigger</code></td><td>Blog pipeline &mdash; briefing, refine, write</td></tr>
+      <tr><td><code>/api/transcript</code></td><td>Meeting transcript processing</td></tr>
+      <tr><td><code>/api/whatsapp</code></td><td>Bhavani WhatsApp bot</td></tr>
+      <tr><td><code>/api/assistant</code></td><td>General assistant (shared secret auth)</td></tr>
+      <tr><td><code>/api/sop-updater</code></td><td>SOP/playbook updates</td></tr>
+    </table>
+  </div>
+
+  <div class="note">These run on Balaji's API key centrally. No extra cost for team members.</div>
+</div>
+
+<div class="footer">
+  <p>Core Digital Expansion &mdash; Team Toolkit</p>
+</div>
+
+<script src="../layout.js"></script>
+<script>initLayout('architecture');</script>
+</body>
+</html>

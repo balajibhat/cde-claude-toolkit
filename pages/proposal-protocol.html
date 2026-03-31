@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposal Template Protocol | CDE Toolkit</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Proposal Template Protocol</h1>
+  <p class="page-desc">Standard protocol for building client proposals as GitHub Pages sites. Read this before building any proposal.</p>
+</div>
+
+<div class="note warn"><strong>Agents:</strong> Read this ENTIRE page before starting proposal work. Don't ask about sidebar styling, section order, pricing layout, or deployment &mdash; it's all here. The canonical sidebar reference is <code>balajibhat.github.io/cde-services/</code>.</div>
+
+<div class="section">
+  <h2>Existing Assets</h2>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Asset</th><th>Location</th><th>What It Is</th></tr>
+      <tr><td class="bold">CDE Brand Kit</td><td><code>reference/cde-brand/</code></td><td>Logos, gradients, fonts (Blauer Nue, Switzer), brand guidelines</td></tr>
+      <tr><td class="bold">Tech Logos (250 SVGs)</td><td><code>reference/tech-logos/</code></td><td>GitHub: <code>raw.githubusercontent.com/balajibhat/tech-logos/master/icons/{Name}.svg</code></td></tr>
+      <tr><td class="bold">CDE Services Page</td><td><code>balajibhat.github.io/cde-services/</code></td><td>Canonical sidebar reference</td></tr>
+      <tr><td class="bold">Hotel BFF Proposal</td><td><code>balajibhat.github.io/hotel-bff-proposal/</code></td><td>Reference implementation</td></tr>
+      <tr><td class="bold">LuLu Lynk Proposal</td><td><code>balajibhat.github.io/lulu-lynk-proposal/</code></td><td>Animated hero reference</td></tr>
+      <tr><td class="bold">Hero Canvas Component</td><td><code>hero-canvas.js</code></td><td>Reusable animated constellation/network background</td></tr>
+      <tr><td class="bold">CDE Rate Card</td><td>Google Sheet</td><td>Costs, margins, client rates (internal)</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Design System</h2>
+
+  <h3>Fonts</h3>
+  <div class="logic-box">
+    <table>
+      <tr><td class="bold" style="width:120px">Headlines</td><td><code>Space Grotesk</code> (via Google Fonts)</td></tr>
+      <tr><td class="bold">Body</td><td><code>Inter</code> (via Google Fonts)</td></tr>
+    </table>
+  </div>
+
+  <h3>Colors</h3>
+  <div class="code-block">--blue: #005ccf;
+--black: #1e1e1e;
+--white: #ffffff;
+--gray: #e5e5e5;
+--gray-mid: #666666;
+--gray-light: #f7f7f7;
+--cyan: #7dd3e8;
+--mint: #6bc4a6;</div>
+
+  <h3>Sidebar (260px fixed)</h3>
+  <p class="section-desc">Must match the CDE services page exactly. Dark (#1e1e1e), full height, 260px wide. Active state uses <code>background: rgba(0,92,207,0.2)</code> &mdash; NOT border-left style.</p>
+</div>
+
+<div class="section">
+  <h2>Required Sections (in order)</h2>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>#</th><th>Section</th><th>Key Requirements</th></tr>
+      <tr><td>1</td><td class="bold">Hero</td><td>Full viewport (100vh), animated canvas via <code>hero-canvas.js</code>, client logo, mission-focused headline. NO pricing.</td></tr>
+      <tr><td>2</td><td class="bold">The Opportunity</td><td>Before/After split (Today vs After CDE). X marks for problems, checkmarks for solutions. Stat cards.</td></tr>
+      <tr><td>3</td><td class="bold">Market Context</td><td>(Optional) Regulatory urgency, market timing, competitive landscape.</td></tr>
+      <tr><td>4</td><td class="bold">Phase 1</td><td>Flat cards per deliverable. Title + price, bullet list, payment terms. Callouts for client responsibilities.</td></tr>
+      <tr><td>5</td><td class="bold">Phase 2+</td><td>Visual pricing blocks with colored left borders. Blue = one-time, Mint = recurring, Cyan = performance.</td></tr>
+      <tr><td>6</td><td class="bold">The Math</td><td>Comparison table (Standard vs Client rate). Big stat boxes. Savings callout. Make the numbers big.</td></tr>
+      <tr><td>7</td><td class="bold">Attribution / Model</td><td>(If applicable) Lead tracking, qualification criteria.</td></tr>
+      <tr><td>8</td><td class="bold">Timeline</td><td>Horizontal dots + connecting line. Phase 1: blue. Phase 2: mint. Stacks vertically on mobile.</td></tr>
+      <tr><td>9</td><td class="bold">Terms & Next Steps</td><td>Two-column: terms left, next steps right. Bottom CTA with email.</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Hero Section</h2>
+  <p class="section-desc">Every proposal uses <code>hero-canvas.js</code> &mdash; a reusable animated constellation/network graphic. The hero must be <code>min-height: 100vh</code> and no other section should be visible on initial load.</p>
+
+  <h3>Hero Readability QA</h3>
+  <div class="logic-box">
+    <table>
+      <tr><th>Element</th><th>Min Opacity</th><th>CSS Value</th></tr>
+      <tr><td>Badge text</td><td>0.8+</td><td><code>color: var(--cyan)</code> at full/near-full opacity</td></tr>
+      <tr><td>H1 headline</td><td>1.0</td><td><code>color: #fff</code> &mdash; always full white</td></tr>
+      <tr><td>Subtitle</td><td>0.65+</td><td><code>rgba(255,255,255, 0.65)</code></td></tr>
+      <tr><td>Mission text</td><td>0.5+</td><td><code>rgba(255,255,255, 0.55)</code></td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Rules</h2>
+
+  <div class="logic-box">
+    <table>
+      <tr><td style="color: var(--red); width: 30px;">&#10007;</td><td>No personal names &mdash; use "Core Digital Expansion" only</td></tr>
+      <tr><td style="color: var(--red);">&#10007;</td><td>No scroll reveal animations &mdash; all content visible immediately</td></tr>
+      <tr><td style="color: var(--red);">&#10007;</td><td>No pricing in the hero &mdash; lead with mission/value</td></tr>
+      <tr><td style="color: var(--red);">&#10007;</td><td>No fixed <code>max-width</code> on sections &mdash; use padding only</td></tr>
+      <tr><td style="color: var(--green);">&#10003;</td><td>Contact email: <code>balaji@cd-expansion.com</code></td></tr>
+      <tr><td style="color: var(--green);">&#10003;</td><td>Dark cards use solid <code>#2a2a2a</code> backgrounds, not transparent rgba</td></tr>
+      <tr><td style="color: var(--green);">&#10003;</td><td>Pricing blocks use colored left borders: Blue (one-time), Mint (recurring), Cyan (performance)</td></tr>
+      <tr><td style="color: var(--green);">&#10003;</td><td>Always QA with Playwright before pushing</td></tr>
+      <tr><td style="color: var(--green);">&#10003;</td><td>Research uses official/primary sources only &mdash; no Statista, no aggregators</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Lessons Learned</h2>
+  <div class="logic-box">
+    <table>
+      <tr><td>1</td><td>Don't use <code>position: relative</code> on all children when parent has absolute-positioned decorative elements</td></tr>
+      <tr><td>2</td><td>Never use fixed <code>max-width</code> on sections &mdash; causes right-side clipping with 260px sidebar</td></tr>
+      <tr><td>3</td><td>Dark section cards must use solid backgrounds (<code>#2a2a2a</code>), not <code>rgba(255,255,255,0.06)</code></td></tr>
+      <tr><td>4</td><td>Sidebar active state text: <code>#ffffff</code> with <code>font-weight: 600</code></td></tr>
+      <tr><td>5</td><td>Simple Icons CDN doesn't have all brands &mdash; fall back to <code>balajibhat/tech-logos</code></td></tr>
+      <tr><td>6</td><td>Figma community SVG exports include wordmark + border &mdash; use <code>icons/</code> subfolder for icon-only</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Deployment</h2>
+  <div class="code-block"><span class="comment"># 1. Initialize and push</span>
+git init && git add . && git commit -m "Initial proposal"
+gh repo create balajibhat/[project-name] --public --source=. --push
+
+<span class="comment"># 2. Enable GitHub Pages on master branch</span>
+<span class="comment"># 3. Live at: https://balajibhat.github.io/[project-name]/</span></div>
+</div>
+
+<div class="section">
+  <h2>Pre-Sharing Checklist</h2>
+  <div class="logic-box">
+    <table>
+      <tr><td style="width: 30px;">&#9744;</td><td>Sidebar matches services page design exactly</td></tr>
+      <tr><td>&#9744;</td><td>No personal names anywhere</td></tr>
+      <tr><td>&#9744;</td><td>Contact email is balaji@cd-expansion.com</td></tr>
+      <tr><td>&#9744;</td><td>All pricing correct and consistent</td></tr>
+      <tr><td>&#9744;</td><td>Comparison table math adds up</td></tr>
+      <tr><td>&#9744;</td><td>Hero is mission-focused, 100vh, animated</td></tr>
+      <tr><td>&#9744;</td><td>No broken images or console errors (Playwright QA)</td></tr>
+      <tr><td>&#9744;</td><td>Responsive &mdash; no horizontal overflow</td></tr>
+      <tr><td>&#9744;</td><td>Client logo in hero, doesn't compete with text</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Core Digital Expansion &mdash; Team Toolkit</p>
+</div>
+
+<script src="../layout.js"></script>
+<script>initLayout('proposal-protocol');</script>
+</body>
+</html>

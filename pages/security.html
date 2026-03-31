@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security Policy | CDE Toolkit</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Security Policy</h1>
+  <p class="page-desc">The do's and don'ts of working with AI tools at CDE.</p>
+</div>
+
+<div class="section">
+  <h2>The Rules</h2>
+
+  <h3 style="color: var(--red);">Never Do</h3>
+  <div class="logic-box">
+    <table>
+      <tr><td style="color: var(--red); width: 30px;">&#10007;</td><td>Paste API keys, passwords, or tokens into a Claude conversation</td></tr>
+      <tr><td style="color: var(--red);">&#10007;</td><td>Commit credentials to any git repository</td></tr>
+      <tr><td style="color: var(--red);">&#10007;</td><td>Let Claude run Windows system commands (<code>reg</code>, <code>dism</code>, <code>sfc</code>, etc.) unsupervised</td></tr>
+      <tr><td style="color: var(--red);">&#10007;</td><td>Disable or bypass security hooks</td></tr>
+      <tr><td style="color: var(--red);">&#10007;</td><td>Force-push to main/master branches</td></tr>
+      <tr><td style="color: var(--red);">&#10007;</td><td>Run <code>rm -rf</code> or mass deletion commands through Claude</td></tr>
+      <tr><td style="color: var(--red);">&#10007;</td><td>Share your Claude credentials or MCP server tokens with anyone outside CDE</td></tr>
+    </table>
+  </div>
+
+  <h3 style="color: var(--green);">Always Do</h3>
+  <div class="logic-box">
+    <table>
+      <tr><td style="color: var(--green); width: 30px;">&#10003;</td><td>Store credentials in the local <code>credentials/</code> directory only</td></tr>
+      <tr><td style="color: var(--green);">&#10003;</td><td>Review destructive commands before approving them</td></tr>
+      <tr><td style="color: var(--green);">&#10003;</td><td>Keep hooks enabled and up to date</td></tr>
+      <tr><td style="color: var(--green);">&#10003;</td><td>Use the allow/deny lists in <code>settings.json</code> to control what Claude can do</td></tr>
+      <tr><td style="color: var(--green);">&#10003;</td><td>Ask before giving Claude access to new services or APIs</td></tr>
+      <tr><td style="color: var(--green);">&#10003;</td><td>Report any unexpected behavior or security concerns to Balaji immediately</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Permission Model</h2>
+  <p class="section-desc">Claude Code asks permission before running commands. You control how strict it is:</p>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Mode</th><th>Behavior</th><th>Recommended For</th></tr>
+      <tr><td class="bold">Default</td><td>Asks before every command</td><td>New users, learning the system</td></tr>
+      <tr><td class="bold">Allow List</td><td>Auto-approves known-safe patterns (git, npm, etc.)</td><td>Experienced users</td></tr>
+      <tr><td class="bold">Deny List</td><td>Hard blocks on dangerous patterns regardless of user approval</td><td>Everyone (enforced by hooks)</td></tr>
+    </table>
+  </div>
+
+  <div class="note">Even in the most permissive mode, hooks still block dangerous operations. The deny list is a hard floor that cannot be bypassed from within Claude Code.</div>
+</div>
+
+<div class="section">
+  <h2>Incident Response</h2>
+  <p class="section-desc">If something goes wrong:</p>
+
+  <ol class="step-list">
+    <li><strong>Stop Claude immediately</strong> &mdash; press <code>Ctrl+C</code> or close the session</li>
+    <li><strong>Assess the damage</strong> &mdash; check what commands ran, what files changed</li>
+    <li><strong>Notify Balaji</strong> &mdash; even if you think it's minor</li>
+    <li><strong>Don't try to fix it with Claude</strong> &mdash; if something is broken at the system level, fix it manually</li>
+  </ol>
+</div>
+
+<div class="footer">
+  <p>Core Digital Expansion &mdash; Team Toolkit</p>
+</div>
+
+<script src="../layout.js"></script>
+<script>initLayout('security');</script>
+</body>
+</html>

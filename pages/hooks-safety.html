@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hooks & Safety | CDE Toolkit</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Hooks & Safety</h1>
+  <p class="page-desc">Security hooks protect your machine from accidental damage. Here's what they do and why they exist.</p>
+</div>
+
+<div class="note red"><strong>Origin story:</strong> These hooks exist because an AI command bricked a Windows installation in March 2026. System registry commands ran unsupervised and corrupted the OS. These hooks make sure that never happens again.</div>
+
+<div class="section">
+  <h2>Hook 1: Bash Command Guard</h2>
+  <p class="section-desc">Runs before every terminal command Claude tries to execute. Five layers of protection:</p>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Layer</th><th>Action</th><th>Examples</th></tr>
+      <tr><td class="bold" style="color: var(--red);">Windows System Tools</td><td>DENY</td><td><code>reg</code>, <code>dism</code>, <code>sfc</code>, <code>bcdedit</code>, <code>diskpart</code></td></tr>
+      <tr><td class="bold" style="color: var(--red);">Destructive File Ops</td><td>DENY / ASK</td><td><code>rm -rf /</code>, <code>format</code>, mass deletion</td></tr>
+      <tr><td class="bold" style="color: var(--red);">Credential Exfiltration</td><td>DENY / ASK</td><td>Curl/wget with credential paths, piping secrets</td></tr>
+      <tr><td class="bold" style="color: var(--red);">Remote Code Execution</td><td>DENY</td><td><code>Invoke-WebRequest | iex</code>, eval of remote scripts</td></tr>
+      <tr><td class="bold" style="color: var(--amber);">Git Destructive Ops</td><td>ASK</td><td><code>git push --force</code>, <code>git reset --hard</code></td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Hook 2: File Edit Guard</h2>
+  <p class="section-desc">Runs before Claude edits or writes any file. Blocks writes to sensitive locations:</p>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Protected Path</th><th>Action</th><th>Why</th></tr>
+      <tr><td><code>credentials/</code></td><td style="color: var(--red);">BLOCK</td><td>API keys and tokens must never be modified by AI</td></tr>
+      <tr><td><code>.env</code> files</td><td style="color: var(--red);">BLOCK</td><td>Environment variables often contain secrets</td></tr>
+      <tr><td><code>.claude/hooks/</code></td><td style="color: var(--red);">BLOCK</td><td>Self-protection &mdash; hooks can't disable themselves</td></tr>
+      <tr><td><code>settings.json</code></td><td style="color: var(--red);">BLOCK</td><td>Prevents permission escalation</td></tr>
+      <tr><td>Windows system paths</td><td style="color: var(--red);">BLOCK</td><td>No OS-level file modifications</td></tr>
+      <tr><td><code>.claude/</code> directory</td><td style="color: var(--amber);">ASK</td><td>Prompts for confirmation before modifying Claude config</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>What This Means for You</h2>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">You can safely</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">Let Claude run commands, edit code, create files in your working directories. Hooks only block dangerous patterns.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">If you get blocked</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">The hook will explain why. If it's a false positive, do the operation manually. Don't try to bypass hooks.</div>
+    </div>
+  </div>
+
+  <div class="note warn"><strong>Never disable hooks.</strong> If a hook blocks something you think is safe, do it manually or ask Balaji. The hooks are there because something went wrong before.</div>
+</div>
+
+<div class="section">
+  <h2>Setting Up Hooks on Your Machine</h2>
+  <p class="section-desc">Hooks are JavaScript files in <code>~/.claude/hooks/</code>. Copy them from this repo's <code>starter/hooks/</code> directory:</p>
+
+  <div class="code-block"><span class="comment"># Copy hook files</span>
+cp cde-claude-toolkit/starter/hooks/* ~/.claude/hooks/</div>
+
+  <div class="note">Hooks are referenced in <code>settings.json</code>. The starter settings file includes the hook configuration.</div>
+</div>
+
+<div class="footer">
+  <p>Core Digital Expansion &mdash; Team Toolkit</p>
+</div>
+
+<script src="../layout.js"></script>
+<script>initLayout('hooks-safety');</script>
+</body>
+</html>

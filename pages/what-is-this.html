@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Is This? | CDE Toolkit</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>What Is This?</h1>
+  <p class="page-desc">A plain-English explanation of what you're plugging into.</p>
+</div>
+
+<div class="section">
+  <h2>Claude Code in 30 Seconds</h2>
+  <p class="section-desc">Claude Code is an AI assistant that lives in your terminal (or VS Code). It can read files, write code, run commands, search the web, talk to APIs, and automate workflows. Think of it as a very capable junior teammate that never sleeps.</p>
+
+  <div class="note">You don't need to be a developer to use it. If you can describe what you want in plain English, Claude Code can usually do it.</div>
+</div>
+
+<div class="section">
+  <h2>What CDE Built on Top</h2>
+  <p class="section-desc">Out of the box, Claude Code is a blank slate. CDE has layered a full operational system on top of it:</p>
+
+  <div class="logic-box">
+    <span class="label">The Stack</span>
+    <table>
+      <tr><td class="bold" style="width:160px">CLAUDE.md</td><td>Instructions file that tells Claude who it is, what rules to follow, and how to behave. Every agent has one.</td></tr>
+      <tr><td class="bold">MCP Servers</td><td>Plugins that give Claude new abilities &mdash; reading Google Drive, generating images, controlling a browser, pulling YouTube transcripts.</td></tr>
+      <tr><td class="bold">Agents</td><td>Specialized Claude instances with specific jobs &mdash; blog briefings, transcript processing, content writing, image generation.</td></tr>
+      <tr><td class="bold">Hooks</td><td>Security guardrails that run before every command. They block dangerous operations and protect credentials.</td></tr>
+      <tr><td class="bold">Webhook Server</td><td>A deployed Vercel service that receives triggers from Zapier, WhatsApp, and other external tools to kick off agents automatically.</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>What You Can Do With It</h2>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Content</div>
+      <div class="kpi-value" style="font-size:14px; font-family: Inter, sans-serif;">Generate blog briefings, write drafts, research competitors</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Operations</div>
+      <div class="kpi-value" style="font-size:14px; font-family: Inter, sans-serif;">Process meeting transcripts, update playbooks, manage feeds</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Client Work</div>
+      <div class="kpi-value" style="font-size:14px; font-family: Inter, sans-serif;">Build proposals, create presentations, run QA on deliverables</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Creative</div>
+      <div class="kpi-value" style="font-size:14px; font-family: Inter, sans-serif;">Generate images, edit photos, build brand assets with AI</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Three Layers</h2>
+  <p class="section-desc">Understanding these layers helps you know what's shared vs. what's yours:</p>
+
+  <div class="logic-box">
+    <table>
+      <tr>
+        <th>Layer</th><th>What It Is</th><th>Shared?</th>
+      </tr>
+      <tr><td class="bold">Infrastructure</td><td>Agents, MCP servers, hooks, CLAUDE.md files, webhook server</td><td style="color: var(--green);">Yes &mdash; via this repo</td></tr>
+      <tr><td class="bold">Configuration</td><td>API keys, OAuth tokens, environment variables</td><td style="color: var(--amber);">No &mdash; per person</td></tr>
+      <tr><td class="bold">State</td><td>Conversation history, memory files, scratchpad</td><td style="color: var(--red);">No &mdash; local only</td></tr>
+    </table>
+  </div>
+
+  <div class="note">You clone the Infrastructure layer from this repo. You set up your own Configuration. State is generated as you work.</div>
+</div>
+
+<div class="footer">
+  <p>Core Digital Expansion &mdash; Team Toolkit</p>
+</div>
+
+<script src="../layout.js"></script>
+<script>initLayout('what-is-this');</script>
+</body>
+</html>

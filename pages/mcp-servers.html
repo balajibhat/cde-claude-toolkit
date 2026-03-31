@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP Servers | CDE Toolkit</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>MCP Servers</h1>
+  <p class="page-desc">MCP (Model Context Protocol) servers are plugins that give Claude new abilities. Here's what CDE uses and how to set each one up.</p>
+</div>
+
+<div class="note">You don't need all of these. Start with Playwright (zero config), then add others as you need them.</div>
+
+<div class="section">
+  <h2>The Server Lineup</h2>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Server</th><th>What It Does</th><th>Setup</th></tr>
+      <tr><td class="bold">Playwright</td><td>Browser automation &mdash; navigate, click, screenshot, test web pages</td><td style="color: var(--green);">Zero config</td></tr>
+      <tr><td class="bold">Supadata</td><td>YouTube transcripts + web scraping</td><td style="color: var(--green);">Zero config</td></tr>
+      <tr><td class="bold">Stitch</td><td>UI design &mdash; generate screens, design systems</td><td style="color: var(--green);">Zero config</td></tr>
+      <tr><td class="bold">Nano Banana</td><td>Gemini-powered image generation and editing</td><td style="color: var(--amber);">API key needed</td></tr>
+      <tr><td class="bold">Google Drive</td><td>Read/search Google Docs, Sheets, Slides</td><td style="color: var(--amber);">OAuth setup</td></tr>
+      <tr><td class="bold">CDE Imagen</td><td>Custom image generation server (Gemini)</td><td style="color: var(--amber);">API key needed</td></tr>
+      <tr><td class="bold">Google Ads</td><td>Query Google Ads data via MQL</td><td style="color: var(--red);">Complex setup</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>How to Add an MCP Server</h2>
+  <p class="section-desc">MCP servers are configured in your Claude Code settings. You can add them via the CLI or by editing the settings file directly.</p>
+
+  <h3>Via CLI (easiest)</h3>
+  <div class="code-block"><span class="comment"># Add Playwright (zero config)</span>
+claude mcp add playwright -- npx @playwright/mcp@latest
+
+<span class="comment"># Add Supadata (zero config)</span>
+claude mcp add supadata -- npx @supadata/mcp
+
+<span class="comment"># Add Stitch (zero config)</span>
+claude mcp add stitch -- npx @_davideast/stitch-mcp</div>
+
+  <h3>Via Settings File</h3>
+  <p class="section-desc">Edit <code>~/.claude/settings.json</code> and add to the <code>mcpServers</code> object:</p>
+  <div class="code-block">{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    },
+    "supadata": {
+      "command": "npx",
+      "args": ["@supadata/mcp"]
+    }
+  }
+}</div>
+</div>
+
+<div class="section">
+  <h2>Server Details</h2>
+
+  <h3>Playwright (Browser Automation)</h3>
+  <p class="section-desc">Navigate to URLs, take screenshots, click elements, fill forms, read page content. Essential for QA, research, and web scraping.</p>
+  <div class="code-block"><span class="comment"># Example: take a screenshot of a page</span>
+"Navigate to balajibhat.github.io/cde-services and take a screenshot"
+
+<span class="comment"># Example: QA a deployed page</span>
+"Check if the sidebar links on our proposal are all working"</div>
+
+  <h3>Supadata (Transcripts + Scraping)</h3>
+  <p class="section-desc">Pull YouTube video transcripts and scrape web pages. Great for research and content creation.</p>
+  <div class="code-block"><span class="comment"># Example</span>
+"Get the transcript from this YouTube video: [URL]"</div>
+
+  <h3>Google Drive (Docs/Sheets Access)</h3>
+  <p class="section-desc">Read Google Docs and Sheets directly. Used by agents to access the Master Brain Doc, content pipeline, and client data. Requires OAuth setup &mdash; see <a href="authentication.html" style="color: var(--cyan);">Authentication</a>.</p>
+
+  <h3>Nano Banana (Image Gen/Edit)</h3>
+  <p class="section-desc">Generate and edit images using Gemini. Requires a Gemini API key &mdash; configure it using the <code>configure_gemini_token</code> tool after adding the server.</p>
+  <div class="code-block">claude mcp add nano-banana -- npx nano-banana-mcp</div>
+</div>
+
+<div class="footer">
+  <p>Core Digital Expansion &mdash; Team Toolkit</p>
+</div>
+
+<script src="../layout.js"></script>
+<script>initLayout('mcp-servers');</script>
+</body>
+</html>

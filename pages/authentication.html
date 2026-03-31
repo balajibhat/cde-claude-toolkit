@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Authentication | CDE Toolkit</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Authentication</h1>
+  <p class="page-desc">How to set up API keys and OAuth tokens for the MCP servers that need them.</p>
+</div>
+
+<div class="note red"><strong>Security first.</strong> Never commit API keys, tokens, or credentials to any repository. Never paste them into a Claude conversation. Store them in your local credentials directory and reference them via environment variables.</div>
+
+<div class="section">
+  <h2>Credentials Directory</h2>
+  <p class="section-desc">Create a local credentials directory that is never committed to git:</p>
+
+  <div class="code-block"><span class="comment"># Windows</span>
+mkdir "%USERPROFILE%\Documents\Claude Code\credentials"
+
+<span class="comment"># Mac</span>
+mkdir -p ~/Documents/Claude\ Code/credentials</div>
+
+  <div class="note warn">Add this directory to your global <code>.gitignore</code> as an extra safety net. Claude Code's security hooks will also block any attempt to read or commit files from this directory.</div>
+</div>
+
+<div class="section">
+  <h2>Server-Specific Auth</h2>
+
+  <h3>Nano Banana (Gemini API Key)</h3>
+  <ol class="step-list">
+    <li>Go to <strong>aistudio.google.com/apikey</strong> and create a Gemini API key</li>
+    <li>Save it to your credentials directory as <code>gemini-api-key.txt</code></li>
+    <li>In Claude Code, use the <code>configure_gemini_token</code> tool to set it up, or set the environment variable <code>GEMINI_API_KEY</code></li>
+  </ol>
+
+  <h3>Google Drive (OAuth)</h3>
+  <p class="section-desc">Google Drive uses OAuth 2.0 &mdash; you'll need to authenticate through a browser flow. Ask Balaji for the OAuth client credentials file, then:</p>
+  <ol class="step-list">
+    <li>Place the <code>gcp-oauth.keys.json</code> file in <code>~/.claude/</code></li>
+    <li>Run the gdrive MCP server &mdash; it will open a browser window for Google sign-in</li>
+    <li>Authorize the app. Tokens are saved locally at <code>~/.claude/.gdrive-server-credentials.json</code></li>
+  </ol>
+
+  <h3>CDE Imagen (Gemini API Key)</h3>
+  <p class="section-desc">Uses the same Gemini API key as Nano Banana. Set the <code>GEMINI_API_KEY</code> environment variable or configure it in the server's env settings.</p>
+
+  <h3>Google Ads (Complex)</h3>
+  <p class="section-desc">Requires OAuth credentials, a developer token, and MCC access. This is admin-level setup &mdash; talk to Balaji if you need Google Ads access.</p>
+</div>
+
+<div class="section">
+  <h2>Environment Variables</h2>
+  <p class="section-desc">Some servers read API keys from environment variables. You can set these in your shell profile or in Claude Code's MCP server config:</p>
+
+  <div class="code-block"><span class="comment"># In settings.json, you can pass env vars to MCP servers:</span>
+{
+  "mcpServers": {
+    "cde-imagen": {
+      "command": "node",
+      "args": ["path/to/server.js"],
+      "env": {
+        "GEMINI_API_KEY": "your-key-here"
+      }
+    }
+  }
+}</div>
+
+  <div class="note warn">If you put keys in <code>settings.json</code>, make sure that file is not synced or committed anywhere. It lives at <code>~/.claude/settings.json</code> and should stay local.</div>
+</div>
+
+<div class="footer">
+  <p>Core Digital Expansion &mdash; Team Toolkit</p>
+</div>
+
+<script src="../layout.js"></script>
+<script>initLayout('authentication');</script>
+</body>
+</html>

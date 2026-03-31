@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Costs & Billing | CDE Toolkit</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Costs & Billing</h1>
+  <p class="page-desc">What Claude Code costs and how billing works across the team.</p>
+</div>
+
+<div class="section">
+  <h2>Individual Costs</h2>
+  <p class="section-desc">Each team member needs their own Claude subscription:</p>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Plan</th><th>Monthly Cost</th><th>Usage Level</th><th>Best For</th></tr>
+      <tr><td class="bold">Claude Max</td><td>$100/mo</td><td>Moderate</td><td>Daily use &mdash; research, content, client work</td></tr>
+      <tr><td class="bold">Claude Max</td><td>$200/mo</td><td>Heavy</td><td>Power users &mdash; heavy coding, multi-agent workflows</td></tr>
+      <tr><td class="bold">API Key</td><td>~$50&ndash;200/mo</td><td>Variable</td><td>Pay-per-use &mdash; good for lighter or bursty workloads</td></tr>
+    </table>
+  </div>
+
+  <div class="note">Start with the $100/mo plan. You can upgrade if you hit rate limits regularly.</div>
+</div>
+
+<div class="section">
+  <h2>Shared Infrastructure</h2>
+  <p class="section-desc">These services run centrally on CDE's API key. No extra cost for team members:</p>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Blog Pipeline</div>
+      <div class="kpi-value" style="font-size:14px; font-family: Inter, sans-serif;">Briefing, refining, writing agents on Vercel</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Transcript PM</div>
+      <div class="kpi-value" style="font-size:14px; font-family: Inter, sans-serif;">Meeting recording processing via Zapier webhook</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Bhavani</div>
+      <div class="kpi-value" style="font-size:14px; font-family: Inter, sans-serif;">WhatsApp bot on Meta Cloud API</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">General Assistant</div>
+      <div class="kpi-value" style="font-size:14px; font-family: Inter, sans-serif;">API-accessible Claude for ad hoc tasks</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>MCP Server Costs</h2>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Server</th><th>Cost</th><th>Notes</th></tr>
+      <tr><td class="bold">Playwright</td><td style="color: var(--green);">Free</td><td>Runs locally</td></tr>
+      <tr><td class="bold">Supadata</td><td style="color: var(--green);">Free</td><td>Free tier covers normal use</td></tr>
+      <tr><td class="bold">Stitch</td><td style="color: var(--green);">Free</td><td>Runs locally</td></tr>
+      <tr><td class="bold">Nano Banana</td><td style="color: var(--amber);">Gemini API</td><td>Free tier available; paid tier ~$0.01-0.05 per image</td></tr>
+      <tr><td class="bold">Google Drive</td><td style="color: var(--green);">Free</td><td>Uses Google's free APIs</td></tr>
+      <tr><td class="bold">CDE Imagen</td><td style="color: var(--amber);">Gemini API</td><td>Same as Nano Banana</td></tr>
+      <tr><td class="bold">Google Ads</td><td style="color: var(--green);">Free</td><td>Uses Google Ads API (free for read access)</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Core Digital Expansion &mdash; Team Toolkit</p>
+</div>
+
+<script src="../layout.js"></script>
+<script>initLayout('costs');</script>
+</body>
+</html>

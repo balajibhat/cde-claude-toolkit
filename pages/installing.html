@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Installing Claude Code | CDE Toolkit</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Installing Claude Code</h1>
+  <p class="page-desc">Get Claude Code running on your machine. Three options depending on how you work.</p>
+</div>
+
+<div class="section">
+  <h2>Option 1: VS Code Extension (Recommended)</h2>
+  <p class="section-desc">Best for most people. Claude lives right inside your editor.</p>
+
+  <ol class="step-list">
+    <li>Open VS Code</li>
+    <li>Go to Extensions (<code>Ctrl+Shift+X</code> / <code>Cmd+Shift+X</code>)</li>
+    <li>Search for <strong>"Claude Code"</strong> by Anthropic</li>
+    <li>Click Install</li>
+    <li>Open Claude with <code>Ctrl+L</code> / <code>Cmd+L</code></li>
+    <li>Sign in with your Anthropic account when prompted</li>
+  </ol>
+</div>
+
+<div class="section">
+  <h2>Option 2: CLI (Terminal)</h2>
+  <p class="section-desc">For power users who prefer the command line.</p>
+
+  <div class="code-block"><span class="comment"># Install via npm (requires Node.js 18+)</span>
+npm install -g @anthropic-ai/claude-code
+
+<span class="comment"># Verify installation</span>
+claude --version
+
+<span class="comment"># Start a session</span>
+claude</div>
+
+  <div class="note">If you don't have Node.js, download it from <strong>nodejs.org</strong>. Get the LTS version.</div>
+</div>
+
+<div class="section">
+  <h2>Option 3: Desktop App</h2>
+  <p class="section-desc">Standalone app, no VS Code required.</p>
+
+  <ol class="step-list">
+    <li>Go to <strong>claude.ai/download</strong></li>
+    <li>Download for your OS (Windows or Mac)</li>
+    <li>Install and sign in</li>
+  </ol>
+</div>
+
+<div class="section">
+  <h2>Subscription</h2>
+  <p class="section-desc">You need an active Claude subscription to use Claude Code.</p>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Plan</th><th>Price</th><th>Best For</th></tr>
+      <tr><td class="bold">Claude Max (Moderate)</td><td>$100/mo</td><td>Regular daily use, most team members</td></tr>
+      <tr><td class="bold">Claude Max (Heavy)</td><td>$200/mo</td><td>Power users, heavy agent usage</td></tr>
+      <tr><td class="bold">API Key (Pay-per-use)</td><td>~$50&ndash;200/mo</td><td>Automated agents, variable workloads</td></tr>
+    </table>
+  </div>
+
+  <div class="note">Webhook-based agents (blog pipeline, transcript PM, Bhavani) run on shared infrastructure &mdash; no extra cost for team members.</div>
+</div>
+
+<div class="section">
+  <h2>Verify It Works</h2>
+  <div class="code-block"><span class="comment"># In terminal or VS Code Claude panel:</span>
+What's 2 + 2?</div>
+  <p class="section-desc" style="margin-top:12px">If Claude responds, you're good. Move on to <a href="quick-start.html" style="color: var(--cyan);">Quick Start</a>.</p>
+</div>
+
+<div class="footer">
+  <p>Core Digital Expansion &mdash; Team Toolkit</p>
+</div>
+
+<script src="../layout.js"></script>
+<script>initLayout('installing');</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping Feed Protocol | CDE Toolkit</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Shopping Feed Management Protocol</h1>
+  <p class="page-desc">How CDE builds and maintains Google Merchant Center supplemental feeds. The most powerful lever for Shopping and PMax campaign performance.</p>
+</div>
+
+<div class="section">
+  <h2>Core Principle</h2>
+  <p class="section-desc">A supplemental feed is how CDE controls what Google sees about a client's products. The primary feed (Shopify sync) handles basics &mdash; our supplemental feed adds the strategic layer: custom labels, corrected categories, missing attributes.</p>
+</div>
+
+<div class="section">
+  <h2>Feed Architecture</h2>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Aspect</th><th>Primary Feed</th><th>Supplemental Feed</th></tr>
+      <tr><td class="bold">Source</td><td>Shopify Content API (auto-sync)</td><td>CSV uploaded to Merchant Center</td></tr>
+      <tr><td class="bold">Controls</td><td>Title, price, image, availability, URL</td><td>Custom labels, categories, attributes, overrides</td></tr>
+      <tr><td class="bold">Update Cadence</td><td>Real-time (Shopify sync)</td><td>Manual upload (monthly or as needed)</td></tr>
+      <tr><td class="bold">Risk Level</td><td>Don't touch &mdash; managed by Shopify</td><td>CDE manages &mdash; our territory</td></tr>
+    </table>
+  </div>
+
+  <h3>ID Format Reality</h3>
+  <p class="section-desc">Shopify feeds into GMC using <strong>two ID formats</strong> for the same variant:</p>
+  <div class="code-block">Shopify-prefix: shopify_US_{product_id}_{variant_id}
+Numeric-only:   {variant_id}</div>
+
+  <div class="note red"><strong>Critical:</strong> The primary feed may use BOTH formats. Before deduplicating, verify match counts. If matched_count > max(type_a_count, type_b_count), both formats are in play. Removing one drops match rate.</div>
+</div>
+
+<div class="section">
+  <h2>Feed QA Protocol</h2>
+
+  <h3>Before Uploading</h3>
+  <ol class="step-list">
+    <li><strong>Never edit CSVs in Excel</strong> &mdash; Excel silently corrupts long numeric IDs into scientific notation (<code>42030246297687</code> &rarr; <code>4.20302E+13</code>). Use VS Code, Notepad++, or Python scripts.</li>
+    <li><strong>Validate ID integrity</strong> &mdash; Spot-check that IDs are full-length numeric strings, not scientific notation.</li>
+    <li><strong>Check column headers</strong> &mdash; GMC only recognizes specific attribute names. Common mistakes: <code>product_name</code> (should be <code>title</code>), spaces instead of underscores.</li>
+    <li><strong>Check for "Offer does not exist" errors</strong> &mdash; These mean supplemental feed has IDs not in the primary feed. Usually discontinued products or ID format mismatches.</li>
+  </ol>
+
+  <h3>After Uploading</h3>
+  <ol class="step-list">
+    <li><strong>Check "Matched products" count</strong> &mdash; Should be close to your row count. Large gaps = ID mismatches.</li>
+    <li><strong>Check "Attribute names"</strong> &mdash; Should say "All recognized." Unrecognized attributes are wasted columns.</li>
+    <li><strong>Download the error report</strong> &mdash; Parse the CSV to identify specific problem products.</li>
+    <li><strong>Cross-reference against primary feed</strong> &mdash; Are failing products actually in the primary feed?</li>
+  </ol>
+</div>
+
+<div class="section">
+  <h2>Custom Label Strategy</h2>
+  <p class="section-desc">Custom labels bridge the feed and campaign structure. Design them BEFORE building campaigns.</p>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Slot</th><th>Recommended Use</th><th>Why</th></tr>
+      <tr><td><code>custom_label_0</code></td><td>Reserved / Promo flags</td><td>Client may use this for sale exclusions &mdash; check first</td></tr>
+      <tr><td><code>custom_label_1</code></td><td>Priority tier (hero / core / long_tail)</td><td>Bid segmentation by revenue importance</td></tr>
+      <tr><td><code>custom_label_2</code></td><td>Product category</td><td>Category-level bid control</td></tr>
+      <tr><td><code>custom_label_3</code></td><td>Collection / product line</td><td>Collection-level segmentation</td></tr>
+      <tr><td><code>custom_label_4</code></td><td>Seasonality</td><td>Seasonal bid adjustments</td></tr>
+    </table>
+  </div>
+
+  <h3>Priority Tier Classification</h3>
+  <div class="logic-box">
+    <table>
+      <tr><td class="bold" style="color: var(--green);">Hero</td><td>Top revenue-driving collections (2-3 lines = 60%+ of revenue)</td></tr>
+      <tr><td class="bold" style="color: var(--blue);">Core</td><td>Solid performers, consistent demand</td></tr>
+      <tr><td class="bold" style="color: var(--muted);">Long tail</td><td>Low volume, niche, accessories, gift cards</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Feed &rarr; Campaign Connection</h2>
+  <p class="section-desc">Every custom label should map to a campaign decision. If it doesn't drive a bid or targeting change, it's wasting a slot.</p>
+
+  <div class="code-block">custom_label_1 = hero      <span class="comment">&rarr; Higher bids, dedicated campaign</span>
+custom_label_1 = core      <span class="comment">&rarr; Standard bids, grouped campaign</span>
+custom_label_1 = long_tail <span class="comment">&rarr; Lower bids or excluded from Shopping</span>
+
+custom_label_2 = shorts    <span class="comment">&rarr; Seasonal bid adjustments (summer up)</span>
+custom_label_2 = outerwear <span class="comment">&rarr; Inverse seasonal adjustments</span>
+
+custom_label_4 = summer_peak  <span class="comment">&rarr; Increase bids May-Aug</span>
+custom_label_4 = winter_peak  <span class="comment">&rarr; Increase bids Nov-Feb</span>
+custom_label_4 = evergreen    <span class="comment">&rarr; Stable year-round</span></div>
+</div>
+
+<div class="section">
+  <h2>Common Pitfalls</h2>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Pitfall</th><th>What Happens</th><th>Prevention</th></tr>
+      <tr><td class="bold">Excel destroys IDs</td><td>14-digit IDs become scientific notation</td><td>Never open feed CSVs in Excel. Use Python or text editor.</td></tr>
+      <tr><td class="bold">Unrecognized attributes</td><td>Column named <code>product_name</code> instead of <code>title</code>. GMC ignores it.</td><td>Cross-reference headers against GMC product data spec.</td></tr>
+      <tr><td class="bold">Dual ID dedup</td><td>Removing one ID format drops match rate</td><td>Verify match rates before deduplicating.</td></tr>
+      <tr><td class="bold">"Offer does not exist"</td><td>Supplemental has IDs not in primary feed</td><td>Download error report, check against Shopify, remove orphans.</td></tr>
+      <tr><td class="bold">Category mismatches</td><td>Shopify-prefix and numeric versions have different categories</td><td>Use Shopify as source of truth, apply to both formats.</td></tr>
+      <tr><td class="bold">OOS products</td><td>Out-of-stock items serve ads, waste budget</td><td>Suppress via MC rules or supplemental feed. Check monthly.</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Decision Framework</h2>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Scenario</th><th>Action</th></tr>
+      <tr><td>Product discontinued in Shopify</td><td style="color: var(--red);">Remove from supplemental</td></tr>
+      <tr><td>Product OOS but will restock</td><td style="color: var(--amber);">Keep in supplemental, suppress via MC rules</td></tr>
+      <tr><td>Duplicate ID formats, both matching</td><td style="color: var(--green);">Keep both</td></tr>
+      <tr><td>Duplicate ID formats, data conflicts</td><td style="color: var(--amber);">Fix data on both, keep both</td></tr>
+      <tr><td>Unrecognized column header</td><td style="color: var(--red);">Remove the column</td></tr>
+      <tr><td>Product in supplemental but not primary</td><td style="color: var(--amber);">Investigate first, then remove if confirmed gone</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Monthly Maintenance</h2>
+  <ol class="step-list">
+    <li><strong>Export fresh Shopify data</strong> &mdash; new products, discontinued, price changes</li>
+    <li><strong>Run the supplemental feed script</strong> against the new export</li>
+    <li><strong>Diff against previous month</strong> &mdash; add new, remove discontinued, update categories</li>
+    <li><strong>Upload and validate</strong> &mdash; check match rates, download error report</li>
+  </ol>
+</div>
+
+<div class="footer">
+  <p>Core Digital Expansion &mdash; Team Toolkit</p>
+</div>
+
+<script src="../layout.js"></script>
+<script>initLayout('shopping-feed-protocol');</script>
+</body>
+</html>

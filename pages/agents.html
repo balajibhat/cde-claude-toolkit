@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agents | CDE Toolkit</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Agents</h1>
+  <p class="page-desc">CDE's AI agents &mdash; specialized Claude instances that handle specific jobs automatically or on demand.</p>
+</div>
+
+<div class="note">Agents are Claude Code sessions with tailored instructions (via CLAUDE.md) and specific tools enabled. Some run automatically via webhooks; others you trigger manually.</div>
+
+<div class="section">
+  <h2>Content Agents</h2>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Agent</th><th>Trigger</th><th>What It Does</th></tr>
+      <tr><td class="bold">Blog Briefing Agent</td><td>Weekdays 6AM auto / 9AM interactive</td><td>Researches trending topics, generates blog briefings, writes to the content pipeline sheet</td></tr>
+      <tr><td class="bold">Briefing Refiner</td><td>Sheet status &rarr; "Review Briefing"</td><td>Takes a draft briefing and refines it based on feedback</td></tr>
+      <tr><td class="bold">Writer Agent</td><td>Sheet status &rarr; "Write"</td><td>Turns an approved briefing into a full blog post draft</td></tr>
+      <tr><td class="bold">Weekly Review</td><td>Sundays 8PM</td><td>Reviews the week's content performance and suggests next week's focus</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Operations Agents</h2>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Agent</th><th>Trigger</th><th>What It Does</th></tr>
+      <tr><td class="bold">Transcript PM Bot</td><td>Zapier &rarr; webhook</td><td>Processes meeting recordings into structured notes with action items</td></tr>
+      <tr><td class="bold">SOP Updater</td><td>Manual / queue-driven</td><td>Updates standard operating procedures when processes change</td></tr>
+      <tr><td class="bold">General Assistant</td><td>Webhook with shared secret</td><td>On-demand Claude assistant accessible via API</td></tr>
+      <tr><td class="bold">Bhavani (WhatsApp)</td><td>WhatsApp message</td><td>WhatsApp bot for quick questions and tasks via Meta Cloud API</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Infrastructure Agents</h2>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Agent</th><th>Trigger</th><th>What It Does</th></tr>
+      <tr><td class="bold">Agent Builder</td><td>Manual</td><td>Helps build and configure new agents &mdash; generates CLAUDE.md, launcher scripts, and registrations</td></tr>
+      <tr><td class="bold">Boot Up Protocol</td><td>Manual launcher</td><td>Morning startup sequence &mdash; checks systems, loads context, surfaces priorities</td></tr>
+      <tr><td class="bold">Drive Organizer</td><td>Manual / queue</td><td>Organizes Google Drive files according to CDE's folder structure</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>How Agents Work</h2>
+  <p class="section-desc">Every agent follows the same pattern:</p>
+
+  <div class="code-block"><span class="comment"># 1. Agent has its own CLAUDE.md with specific instructions</span>
+agents/blog-briefing-agent/CLAUDE.md
+
+<span class="comment"># 2. Agent may have a launcher script</span>
+launchers/boot-up-protocol/launcher.bat
+
+<span class="comment"># 3. Webhook agents have a Vercel endpoint</span>
+cde-agent-webhooks/api/trigger.js
+
+<span class="comment"># 4. Agent is registered in the Agent Registry sheet</span>
+<span class="comment"># Sheet ID: 1vAkjWRywv2HTrtq3lTRSb9KTl7y6gcbgRSWDnSkmbZg</span></div>
+</div>
+
+<div class="section">
+  <h2>Using Agents Day-to-Day</h2>
+  <p class="section-desc">Most agents run automatically. For manual agents, you typically just open Claude Code and tell it what you need. The CLAUDE.md file loaded in your session handles the rest.</p>
+
+  <div class="note green">You don't need to memorize agent names or commands. Just describe what you want to do and Claude will use the right tools and follow the right processes based on your CLAUDE.md configuration.</div>
+</div>
+
+<div class="footer">
+  <p>Core Digital Expansion &mdash; Team Toolkit</p>
+</div>
+
+<script src="../layout.js"></script>
+<script>initLayout('agents');</script>
+</body>
+</html>
