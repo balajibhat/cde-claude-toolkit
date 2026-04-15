@@ -20,6 +20,8 @@ const NAV = [
   { section: 'Protocols' },
   { label: 'Proposal Template', icon: '\u2630', href: 'pages/proposal-protocol.html', id: 'proposal-protocol' },
   { label: 'Shopping Feeds', icon: '\u26C1', href: 'pages/shopping-feed-protocol.html', id: 'shopping-feed-protocol' },
+  { label: 'Writing Standards', icon: '\u270E', href: 'pages/writing-standards.html', id: 'writing-standards' },
+  { label: 'Knowledge Routing', icon: '\u2B95', href: 'pages/knowledge-routing.html', id: 'knowledge-routing' },
 
   { section: 'Reference' },
   { label: 'Security Policy', icon: '\u26A0', href: 'pages/security.html', id: 'security' },

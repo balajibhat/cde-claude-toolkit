@@ -48,17 +48,27 @@ bash starter/hooks/install-hooks.sh</div>
     </li>
     <li>
       <strong>Set up MCP servers</strong><br>
-      Follow the <a href="mcp-servers.html" style="color: var(--cyan);">MCP Servers guide</a> to connect the tools you need. Start with <strong>Playwright</strong> (browser automation) &mdash; it requires zero configuration.
+      Run the MCP setup script to add the core servers automatically:<br>
+      <div class="code-block"><span class="comment"># Windows</span>
+starter\setup-mcp.bat
+
+<span class="comment"># Mac / Linux / Git Bash</span>
+bash starter/setup-mcp.sh</div>
+      Or follow the <a href="mcp-servers.html" style="color: var(--cyan);">MCP Servers guide</a> to add them manually.
     </li>
     <li>
       <strong>Set up authentication</strong><br>
       Follow the <a href="authentication.html" style="color: var(--cyan);">Authentication guide</a> for any MCP servers that need API keys or OAuth tokens.
     </li>
     <li>
-      <strong>Test it</strong><br>
-      Open Claude Code &mdash; in VS Code (<code>Ctrl+L</code> / <code>Cmd+L</code>), the Desktop App, or the CLI &mdash; and try:<br>
-      <div class="code-block">What MCP servers do I have connected?</div>
-      Claude should list your active servers. If it does &mdash; you're in.
+      <strong>Verify your setup</strong><br>
+      Run the verification script to confirm everything is configured:<br>
+      <div class="code-block"><span class="comment"># Windows</span>
+starter\verify-setup.bat
+
+<span class="comment"># Mac / Linux / Git Bash</span>
+bash starter/verify-setup.sh</div>
+      You should see all PASS results. Fix any FAILs and re-run.
     </li>
   </ol>
 </div>

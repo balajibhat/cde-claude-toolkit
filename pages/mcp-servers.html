@@ -33,10 +33,18 @@
 </div>
 
 <div class="section">
-  <h2>How to Add an MCP Server</h2>
-  <p class="section-desc">MCP servers are configured in your Claude Code settings. You can add them via the CLI or by editing the settings file directly.</p>
+  <h2>How to Add MCP Servers</h2>
+  <p class="section-desc">The fastest way is the setup script &mdash; it adds the three zero-config servers automatically:</p>
 
-  <h3>Via CLI (easiest)</h3>
+  <div class="code-block"><span class="comment"># Windows</span>
+starter\setup-mcp.bat
+
+<span class="comment"># Mac / Linux / Git Bash</span>
+bash starter/setup-mcp.sh</div>
+
+  <p class="section-desc" style="margin-top:16px;">Or add them individually via the CLI or settings file:</p>
+
+  <h3>Via CLI</h3>
   <div class="code-block"><span class="comment"># Add Playwright (zero config)</span>
 claude mcp add playwright -- npx @playwright/mcp@latest
 

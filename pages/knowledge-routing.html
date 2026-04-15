@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knowledge Routing | CDE Toolkit</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Knowledge Routing</h1>
+  <p class="page-desc">When something is learned in a session, it needs to flow to the right place. This guide defines what goes where.</p>
+</div>
+
+<div class="section">
+  <h2>The Durability Test</h2>
+  <p class="section-desc">Before routing any knowledge, ask yourself:</p>
+
+  <div class="note green"><strong>"If someone new joined CDE in 6 months and read this, would it help them understand how the business, client, or system works?"</strong><br><br>
+  YES = durable. Route it. &nbsp;&nbsp; NO = skip it.</div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label" style="color: var(--green);">Route These (Durable)</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">
+        How a business operates<br>
+        How CDE solves problems<br>
+        Strategic context (why X over Y)<br>
+        Protocols and standards<br>
+        Corrections to Claude's behavior<br>
+        Infrastructure decisions
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label" style="color: var(--red);">Skip These (Not Durable)</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">
+        Action items and to-dos<br>
+        Meeting schedules<br>
+        Temporary state ("waiting on X")<br>
+        Debugging steps<br>
+        One-off Q&A<br>
+        Status updates that go stale in days
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>The Four Pillars</h2>
+  <p class="section-desc">All durable knowledge routes to one of these four pillars:</p>
+
+  <div class="logic-box">
+    <table>
+      <tr><th>Pillar</th><th>What Belongs</th><th>Where It Lives</th></tr>
+      <tr>
+        <td class="bold">1. Knowledge Base</td>
+        <td>Repeatable processes, standards, protocols, "how CDE does X"</td>
+        <td><code>reference/</code> docs, toolkit pages, memory reference files</td>
+      </tr>
+      <tr>
+        <td class="bold">2. Client Playbooks</td>
+        <td>Strategic client context &mdash; business model, audience, CDE approach</td>
+        <td>Memory project files, client playbook repos</td>
+      </tr>
+      <tr>
+        <td class="bold">3. The CDE Way</td>
+        <td>Feedback, corrections, quality standards, tool preferences</td>
+        <td>Memory feedback files</td>
+      </tr>
+      <tr>
+        <td class="bold">4. Operational Docs</td>
+        <td>Data agents depend on &mdash; staffing, contacts, scope, agent status</td>
+        <td>Google Sheets (Client Tracker, Agent Registry)</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="note warn"><strong>Playbooks are strategic only.</strong> No tasks, action items, timelines, checklists, or meeting notes. If it reads like a task &mdash; skip it.</div>
+</div>
+
+<div class="section">
+  <h2>Decision Tree</h2>
+  <p class="section-desc">Use this sequential filter to route any piece of knowledge:</p>
+
+  <div class="code-block"><span class="comment">1.</span> Durable? (6-month test)
+   &rarr; NO  &rarr; Skip
+   &rarr; YES &rarr; Continue
+
+<span class="comment">2.</span> Changes Claude's behavior?
+   &rarr; YES &rarr; Pillar 3 (feedback memory file)
+
+<span class="comment">3.</span> Changes a repeatable process?
+   &rarr; YES &rarr; Pillar 1 (reference doc + toolkit page)
+
+<span class="comment">4.</span> Strategic client context?
+   &rarr; YES &rarr; Pillar 2 (project memory + playbook)
+
+<span class="comment">5.</span> Data agents depend on?
+   &rarr; YES &rarr; Pillar 4 (operational sheets)
+
+<span class="comment">6.</span> CDE infrastructure?
+   &rarr; YES &rarr; Pillar 1 + 4 (toolkit + registry)
+
+<span class="comment">7.</span> None of the above &rarr; Skip</div>
+</div>
+
+<div class="section">
+  <h2>Common Patterns</h2>
+  <p class="section-desc">One piece of knowledge often flows to multiple places. These are the patterns:</p>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Client Decision</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">
+        <strong>1.</strong> Memory project file (context + rationale)<br>
+        <strong>2.</strong> Client playbook (strategic implication)<br>
+        <strong>3.</strong> Client Tracker sheet (scope change if any)
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">New Protocol</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">
+        <strong>1.</strong> Reference doc (source of truth)<br>
+        <strong>2.</strong> Memory reference file (index entry)<br>
+        <strong>3.</strong> Toolkit page (team-facing version)
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Feedback / Correction</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">
+        <strong>1.</strong> Feedback memory file (rule + why + how)<br>
+        <strong>2.</strong> Flag Master Brain Doc (if system-wide)
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Infrastructure Change</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">
+        <strong>1.</strong> Workspace memory (updated fact)<br>
+        <strong>2.</strong> Toolkit page (setup/architecture docs)<br>
+        <strong>3.</strong> Agent Registry (changelog entry)
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Core Digital Expansion &mdash; Team Toolkit</p>
+</div>
+
+<script src="../layout.js"></script>
+<script>initLayout('knowledge-routing');</script>
+</body>
+</html>
