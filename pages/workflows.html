@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day 1 Workflows | CDE Toolkit</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Day 1 Workflows</h1>
+  <p class="page-desc">Real prompts for real work. Copy these into Claude Code and start getting things done.</p>
+</div>
+
+<div class="note green"><strong>How to use this page:</strong> Each workflow below is a prompt you can paste directly into Claude Code (VS Code, Desktop App, or CLI). Swap the bracketed placeholders with your actual details.</div>
+
+<!-- ====== RESEARCH ====== -->
+<div class="section">
+  <h2>Research</h2>
+
+  <h3>Competitor Analysis</h3>
+  <p class="section-desc">Uses Playwright to visit competitor sites and Supadata for any YouTube content.</p>
+  <div class="code-block">Research [competitor name]'s website at [URL]. I need:
+- What services/products they offer
+- How they position themselves (tagline, hero messaging)
+- Pricing if visible
+- Any case studies or social proof
+
+Use only what's on their actual website. No guessing.</div>
+
+  <h3>Industry Research</h3>
+  <p class="section-desc">Deep research using primary sources only (per CDE rules).</p>
+  <div class="code-block">Research the [industry/topic] market for a client pitch. I need:
+- Market size (from official industry reports, not aggregators)
+- Key trends (cite the source for each)
+- Top 3-5 players and what they do differently
+
+Only use official sources — no Statista, no SEO blogs. Cite everything.</div>
+
+  <h3>YouTube Video Summary</h3>
+  <p class="section-desc">Pulls transcript via Supadata and summarizes it.</p>
+  <div class="code-block">Get the transcript from this video: [YouTube URL]
+
+Summarize the key points in bullet format. Flag any stats or claims
+that would be useful for our [client/project] work.</div>
+</div>
+
+<!-- ====== QA ====== -->
+<div class="section">
+  <h2>QA &amp; Testing</h2>
+
+  <h3>Full Page QA</h3>
+  <p class="section-desc">Uses Playwright to inspect a live page. Essential before sharing any deliverable with a client.</p>
+  <div class="code-block">QA this page: [URL]
+
+Check:
+- All navigation links work (no 404s)
+- No console errors
+- Mobile responsive (check at 375px width)
+- All images load
+- Text is readable, no overflow or clipping
+- Forms work if any exist
+
+Take screenshots at desktop and mobile widths.</div>
+
+  <h3>Quick Link Check</h3>
+  <div class="code-block">Navigate to [URL] and check every link on the page.
+Report any that are broken or lead to 404s.</div>
+
+  <h3>Cross-Browser Spot Check</h3>
+  <div class="code-block">Navigate to [URL] and take a screenshot. Then check:
+- Does the layout match the design intent?
+- Any text overflow or alignment issues?
+- Do all interactive elements (buttons, forms, dropdowns) look correct?</div>
+</div>
+
+<!-- ====== CONTENT ====== -->
+<div class="section">
+  <h2>Content Creation</h2>
+
+  <h3>Blog Post from Topic</h3>
+  <div class="code-block">Write a blog post for CDE about [topic].
+
+Target audience: [who reads this]
+Tone: professional but conversational, no fluff
+Length: ~800-1200 words
+Include: specific examples, data points with citations
+
+Remember: no AI filler words (check the Writing Standards protocol).</div>
+
+  <h3>Social Media Copy</h3>
+  <div class="code-block">Write 3 LinkedIn post options for [topic/announcement].
+
+Each post should:
+- Have a strong hook in the first line
+- Be under 200 words
+- End with a clear CTA
+- Sound like a real person, not a corporate account
+- No hashtag spam (3 max, only if relevant)</div>
+
+  <h3>Video Script Outline</h3>
+  <div class="code-block">Create a video script outline for a [length]-minute video about [topic].
+
+Structure:
+- Hook (first 5 seconds)
+- Problem statement
+- Key points (3 max)
+- CTA
+
+Target platform: [YouTube / LinkedIn / Instagram Reels]
+Speaker: [who's on camera]</div>
+</div>
+
+<!-- ====== CLIENT WORK ====== -->
+<div class="section">
+  <h2>Client Work</h2>
+
+  <h3>Start a Proposal</h3>
+  <p class="section-desc">Follow the CDE Proposal Template Protocol. Claude knows the structure if your CLAUDE.md is set up.</p>
+  <div class="code-block">I need to build a proposal for [client name]. Here's what I know:
+
+- Client: [name and what they do]
+- Services we're proposing: [list]
+- Budget range: [if known]
+- Timeline: [if known]
+
+Check the Proposal Template Protocol before starting. Build this
+as a GitHub Pages site following CDE standards.</div>
+
+  <h3>Meeting Prep</h3>
+  <div class="code-block">I have a meeting with [client name] in [timeframe]. Help me prep:
+
+- What we've been working on with them: [brief context]
+- What I want to discuss: [topics]
+- What I need from them: [decisions, approvals, assets]
+
+Give me a one-page agenda and a list of questions to ask.</div>
+
+  <h3>Campaign Performance Summary</h3>
+  <p class="section-desc">If you have Google Ads MCP connected.</p>
+  <div class="code-block">Pull performance data for [client name]'s Google Ads account
+for the last 30 days. I need:
+
+- Total spend, conversions, CPA
+- Top 5 campaigns by conversions
+- Any campaigns with CPA above [target]
+- Week-over-week trend
+
+Format as a summary I can paste into a client email.</div>
+</div>
+
+<!-- ====== OPERATIONS ====== -->
+<div class="section">
+  <h2>Operations</h2>
+
+  <h3>Meeting Notes Cleanup</h3>
+  <div class="code-block">Here are rough notes from a meeting with [client]:
+
+[paste notes]
+
+Clean these up into:
+1. Key decisions made
+2. Action items (who owns what, by when)
+3. Open questions
+4. Next meeting topics</div>
+
+  <h3>Shopping Feed Audit</h3>
+  <p class="section-desc">Follow the Shopping Feed Management Protocol.</p>
+  <div class="code-block">I need to audit [client]'s Google Merchant Center supplemental feed.
+
+The feed file is at: [path or URL]
+
+Check the Shopping Feed Protocol, then:
+- Validate ID format matches primary feed
+- Check for missing required fields
+- Flag any custom label issues
+- Report total products and any errors</div>
+
+  <h3>SOP Draft</h3>
+  <div class="code-block">Write an SOP for [process name]. Here's how it works:
+
+[describe the process in plain language]
+
+Format it as:
+- Purpose (one sentence)
+- When to use
+- Step-by-step instructions
+- Common mistakes to avoid
+- Who to contact if something goes wrong</div>
+</div>
+
+<!-- ====== IMAGE GEN ====== -->
+<div class="section">
+  <h2>Image Generation</h2>
+  <p class="section-desc">Requires Nano Banana MCP server with a Gemini API key configured.</p>
+
+  <h3>Social Media Graphics</h3>
+  <div class="code-block">Generate an image for a LinkedIn post about [topic].
+
+Style: clean, professional, minimal
+Dimensions: 1200x627 (LinkedIn landscape)
+Include: [any text overlay or visual elements]
+Brand colors: [if applicable]
+
+Save to outputs/[client-name]/</div>
+
+  <h3>Blog Header Image</h3>
+  <div class="code-block">Generate a header image for a blog post titled "[title]".
+
+Style: [modern/editorial/illustrative]
+Mood: [professional/energetic/calm]
+Dimensions: 1200x630
+
+Don't include any text in the image — we'll overlay that separately.</div>
+</div>
+
+<!-- ====== TIPS ====== -->
+<div class="section">
+  <h2>Tips for Better Results</h2>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Be Specific</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">
+        "Write a blog post" &rarr; generic result<br>
+        "Write an 800-word post about why hotels should track Scope 3 emissions, targeting sustainability directors" &rarr; useful result
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Give Context</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">
+        Claude doesn't know your client. Spend 2 sentences explaining who they are, what they do, and who their audience is. It pays off in every output.
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Iterate, Don't Restart</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">
+        If the first output is 70% right, say what's wrong and ask Claude to fix it. Don't start over with a new prompt &mdash; Claude remembers the full conversation.
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Check the Protocols</div>
+      <div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">
+        Before proposals, shopping feeds, or content: tell Claude to check the relevant protocol page. It'll follow the CDE standard automatically.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Core Digital Expansion &mdash; Team Toolkit</p>
+</div>
+
+<script src="../layout.js"></script>
+<script>initLayout('workflows');</script>
+</body>
+</html>

@@ -6,6 +6,7 @@ const NAV = [
   { label: 'Home', icon: '\u2302', href: 'index.html', id: 'home' },
   { label: 'What Is This?', icon: '\u2139', href: 'pages/what-is-this.html', id: 'what-is-this' },
   { label: 'Quick Start', icon: '\u26A1', href: 'pages/quick-start.html', id: 'quick-start' },
+  { label: 'Day 1 Workflows', icon: '\u25B6', href: 'pages/workflows.html', id: 'workflows' },
 
   { section: 'Setup Guides' },
   { label: 'Installing Claude Code', icon: '\u2193', href: 'pages/installing.html', id: 'installing' },
