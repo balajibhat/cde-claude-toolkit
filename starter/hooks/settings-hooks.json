@@ -1,0 +1,29 @@
+{
+  "_comment": "CDE Team Toolkit — Hook Configuration. Merge this into your ~/.claude/settings.json",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/check-system-commands.js\"",
+            "timeout": 5,
+            "statusMessage": "Checking for dangerous commands..."
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/check-file-edits.js\"",
+            "timeout": 5,
+            "statusMessage": "Checking file edit safety..."
+          }
+        ]
+      }
+    ]
+  }
+}

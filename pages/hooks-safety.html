@@ -67,12 +67,75 @@
 
 <div class="section">
   <h2>Setting Up Hooks on Your Machine</h2>
-  <p class="section-desc">Hooks are JavaScript files in <code>~/.claude/hooks/</code>. Copy them from this repo's <code>starter/hooks/</code> directory:</p>
+  <p class="section-desc">Hooks are JavaScript files that live in <code>~/.claude/hooks/</code> and are configured in <code>~/.claude/settings.json</code>. We've included an installer script to set them up automatically.</p>
 
-  <div class="code-block"><span class="comment"># Copy hook files</span>
-cp cde-claude-toolkit/starter/hooks/* ~/.claude/hooks/</div>
+  <h3 style="margin-top:24px; margin-bottom:12px;">Option A: Run the Installer (Recommended)</h3>
+  <p class="section-desc">From the <code>cde-claude-toolkit</code> directory you cloned:</p>
 
-  <div class="note">Hooks are referenced in <code>settings.json</code>. The starter settings file includes the hook configuration.</div>
+  <div class="code-block"><span class="comment"># Windows (Command Prompt or PowerShell)</span>
+starter\hooks\install-hooks.bat
+
+<span class="comment"># Mac / Linux / Git Bash</span>
+bash starter/hooks/install-hooks.sh</div>
+
+  <p class="section-desc" style="margin-top:12px;">The installer copies the hook scripts and creates or guides you through updating <code>settings.json</code>.</p>
+
+  <h3 style="margin-top:24px; margin-bottom:12px;">Option B: Manual Setup</h3>
+  <p class="section-desc">If you prefer to do it by hand:</p>
+
+  <ol class="step-list">
+    <li>
+      <strong>Create the hooks directory</strong><br>
+      <div class="code-block"><span class="comment"># Windows</span>
+mkdir %USERPROFILE%\.claude\hooks
+
+<span class="comment"># Mac / Linux</span>
+mkdir -p ~/.claude/hooks</div>
+    </li>
+    <li>
+      <strong>Copy the hook files</strong><br>
+      <div class="code-block"><span class="comment"># Windows</span>
+copy cde-claude-toolkit\starter\hooks\check-system-commands.js %USERPROFILE%\.claude\hooks\
+copy cde-claude-toolkit\starter\hooks\check-file-edits.js %USERPROFILE%\.claude\hooks\
+
+<span class="comment"># Mac / Linux</span>
+cp cde-claude-toolkit/starter/hooks/check-system-commands.js ~/.claude/hooks/
+cp cde-claude-toolkit/starter/hooks/check-file-edits.js ~/.claude/hooks/</div>
+    </li>
+    <li>
+      <strong>Add hooks to settings.json</strong><br>
+      Open <code>~/.claude/settings.json</code> (create it if it doesn't exist) and add the <code>"hooks"</code> block from <code>starter/hooks/settings-hooks.json</code>. The key section:<br>
+      <div class="code-block">{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [{
+          "type": "command",
+          "command": "node \"$HOME/.claude/hooks/check-system-commands.js\"",
+          "timeout": 5
+        }]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [{
+          "type": "command",
+          "command": "node \"$HOME/.claude/hooks/check-file-edits.js\"",
+          "timeout": 5
+        }]
+      }
+    ]
+  }
+}</div>
+    </li>
+  </ol>
+
+  <h3 style="margin-top:24px; margin-bottom:12px;">Verify It Works</h3>
+  <p class="section-desc">Open Claude Code (VS Code, Desktop App, or CLI) and ask Claude to run any bash command. You should see <strong>"Checking for dangerous commands..."</strong> flash in the status bar. That means the hook is active.</p>
+
+  <div class="note green"><strong>Works everywhere:</strong> Hooks run the same way whether you use VS Code, the Desktop App, or the CLI. They're configured at the user level in <code>~/.claude/</code>, not per-app.</div>
+
+  <div class="note warn"><strong>Requires Node.js.</strong> The hook scripts are JavaScript files executed by <code>node</code>. If you don't have Node.js installed, get it from <strong>nodejs.org</strong> (LTS version).</div>
 </div>
 
 <div class="footer">
