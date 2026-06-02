@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills | CDE Toolkit</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Skills</h1>
+  <p class="page-desc">Repeatable CDE processes packaged as Claude skills. Each one captures how we do a recurring task so anyone gets the same quality output, the same way, every time.</p>
+</div>
+
+<div class="note green"><strong>What is a skill?</strong> A skill is a saved process Claude already knows. You either type <code>/skill-name</code> or just describe the task in plain language and Claude loads the right process automatically. You do not need to remember the steps. The skill does.</div>
+
+<div class="note"><strong>Where they live:</strong> Skills are installed at <code>~/.claude/skills/</code> on each person's machine. If a skill below does not show up when you type <code>/</code>, you need to install it (ask Balaji or copy the skill folder from the shared setup).</div>
+
+<!-- ====== HOW TO USE ====== -->
+<div class="section">
+  <h2>How to use a skill</h2>
+  <p class="section-desc">Two ways. Both work.</p>
+
+  <h3>Option A: Just describe the task</h3>
+  <div class="code-block">I have a Google Ads search terms export for [client].
+Can you give me a performance recap and a negative keyword scrub?</div>
+  <p class="section-desc">Claude recognizes the task and loads the matching skill on its own.</p>
+
+  <h3>Option B: Call it directly</h3>
+  <div class="code-block">/google-ads-update</div>
+  <p class="section-desc">Type a slash and the skill name. Useful when you want to be explicit.</p>
+</div>
+
+<!-- ====== COMPETITIVE AUDIT ====== -->
+<div class="section">
+  <h2>competitive-audit</h2>
+  <p class="section-desc">Competitor teardown: landing pages plus the ads they are actually running, compiled into a branded deck.</p>
+
+  <h3>When to use it</h3>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-label">Use it for</div><div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">A client asks "what are our competitors doing?", landing-page benchmarking, or auditing competitor ad creative.</div></div>
+    <div class="kpi-card"><div class="kpi-label">What it produces</div><div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">A branded PPTX: competitor hero screenshots, ad-library creative, positioning patterns, and recommendations tied to the client's own data.</div></div>
+  </div>
+
+  <h3>What it does</h3>
+  <p class="section-desc">Captures competitor landing pages (Playwright screenshots), pulls their running ads from Meta Ad Library, Google Ads Transparency Center, TikTok, and LinkedIn, analyzes positioning patterns, and builds the deck. Every observation ties back to the client's own search or ad data.</p>
+
+  <h3>Example prompt</h3>
+  <div class="code-block">Run a competitive audit for [client]. Competitors are [A], [B], [C].
+Capture their landing pages and the ads they are running, then build
+a deck. Here is the client's search terms data: [attach/paste]</div>
+</div>
+
+<!-- ====== GOOGLE ADS UPDATE ====== -->
+<div class="section">
+  <h2>google-ads-update</h2>
+  <p class="section-desc">Turns a Google Ads search-terms export into a performance recap, a negative keyword scrub, and a client-ready email.</p>
+
+  <h3>When to use it</h3>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-label">Use it for</div><div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">Weekly or monthly client updates, negative keyword scrubs, drafting a performance email. Works for any paid-search client.</div></div>
+    <div class="kpi-card"><div class="kpi-label">What it produces</div><div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">Performance numbers, search terms sorted into four buckets (winning, fixable misses, negate, competitor brands), a paste-ready negatives list, and an email draft.</div></div>
+  </div>
+
+  <h3>The key judgment it makes</h3>
+  <p class="section-desc">It separates real missed opportunities (buyer-intent queries that did not convert) from match-type noise (broad research queries that should be negated, not "fixed"). A high-impression zero-click term is often a leak, not unmet demand.</p>
+
+  <h3>Example prompt</h3>
+  <div class="code-block">Here is the Google Ads search terms report for [client]:
+[attach CSV]
+
+Give me a performance recap, a negative keyword scrub (check against
+our existing negatives), and a draft update email for the client.</div>
+</div>
+
+<!-- ====== CDE PROPOSAL ====== -->
+<div class="section">
+  <h2>cde-proposal</h2>
+  <p class="section-desc">Builds a client proposal as a GitHub Pages site that matches the CDE design system exactly.</p>
+
+  <h3>When to use it</h3>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-label">Use it for</div><div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">Building or updating a client proposal, pricing page, or scope of work.</div></div>
+    <div class="kpi-card"><div class="kpi-label">What it produces</div><div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">A single-page proposal site with the CDE sidebar, animated hero, pricing blocks, and a passed Playwright QA, ready to deploy to GitHub Pages.</div></div>
+  </div>
+
+  <h3>What it does</h3>
+  <p class="section-desc">Reads the full <a href="proposal-protocol.html">Proposal Template Protocol</a> first, then builds to spec. It handles the design system, section order, hero readability QA, and deployment so you do not have to remember any of it.</p>
+
+  <h3>Example prompt</h3>
+  <div class="code-block">Build a proposal for [client]. Services we are proposing: [list].
+Budget range: [if known]. Follow the CDE proposal protocol and
+QA it with Playwright before we share.</div>
+</div>
+
+<!-- ====== CDE PITCH DECK ====== -->
+<div class="section">
+  <h2>cde-pitch-deck</h2>
+  <p class="section-desc">Preps a new-business pitch: structured research, then a plain-English problem and solution story.</p>
+
+  <h3>When to use it</h3>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-label">Use it for</div><div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">Prepping a pitch for a new prospect, or running pre-pitch research before building a deck.</div></div>
+    <div class="kpi-card"><div class="kpi-label">What it produces</div><div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">A filled-in research brief (website, competitors, Google search, Keyword Planner, Meta Ad Library) plus a structured problem and solution story to hand to a designer.</div></div>
+  </div>
+
+  <h3>The golden rule it follows</h3>
+  <p class="section-desc">Write everything like you are explaining it to someone at a bar. Zero jargon. If a normal person would not nod along, it gets rewritten.</p>
+
+  <h3>Example prompt</h3>
+  <div class="code-block">Prep a pitch for [prospect] at [website]. Run the research:
+their site, their top competitor, Google search, and Meta Ad Library.
+Then give me the problem and solution story for the deck.</div>
+</div>
+
+<!-- ====== RULES ====== -->
+<div class="section">
+  <h2>Rules every skill follows</h2>
+  <p class="section-desc">These are baked in so you do not have to police them.</p>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-label">No em dashes</div><div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">All client-facing copy uses periods, commas, or parentheses instead.</div></div>
+    <div class="kpi-card"><div class="kpi-label">No personal names</div><div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">Client deliverables use "Core Digital Expansion", never an individual's name.</div></div>
+    <div class="kpi-card"><div class="kpi-label">Right currency, right brand</div><div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">UAE clients priced in AED. Drip and ConciergeMD work uses 12100 Collective branding, not CDE.</div></div>
+    <div class="kpi-card"><div class="kpi-label">QA before sharing</div><div class="kpi-value" style="font-size:13px; font-family: Inter, sans-serif;">Web deliverables are checked with Playwright. Research uses official primary sources only.</div></div>
+  </div>
+</div>
+
+<div class="note"><strong>Want a new skill?</strong> If you find yourself doing the same multi-step task more than a couple of times, it is probably a skill candidate. Tell Balaji and we can capture the process so the whole team gets it.</div>
+
+<div class="footer">
+  <p>Core Digital Expansion, Team Toolkit</p>
+</div>
+
+<script src="../layout.js"></script>
+<script>initLayout('skills');</script>
+</body>
+</html>
